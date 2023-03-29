@@ -23,9 +23,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Qr reader',
         theme: ThemeData(
-            primaryColor: Colors.deepPurple,
-            floatingActionButtonTheme: const FloatingActionButtonThemeData(
-                backgroundColor: Colors.deepPurple)),
+          primaryColor: Colors.deepPurple,
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
+              backgroundColor: Colors.deepPurple),
+        ),
         initialRoute: "home_page",
         routes: {
           "home_page": (context) => const HomePage(),
