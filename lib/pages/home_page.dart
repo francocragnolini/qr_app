@@ -47,7 +47,7 @@ class _HomePageBody extends StatelessWidget {
     //? cambiar para mostrar la pagina respectiva en el body en base al index
     final int currentIndex = uiProvider.selectedMenuOpt;
 
-    //TODO: Temporal leer la base de datos
+    // TODO: Temporal leer la base de datos
     final temporalScan = ScanModel(valor: "http://google.com");
 
     //? int porque el future retorna un int
@@ -56,6 +56,10 @@ class _HomePageBody extends StatelessWidget {
     //? buscar scan por id y retornar el valor
     //? http://google.com
     // DBProvider.db.getScanById(16).then((scan) => log('${scan?.valor}'));
+
+    //? get all scans
+    //? lista de http://google.com
+    DBProvider.db.getAllScans().then((scan) => log('$scan'));
 
     switch (currentIndex) {
       case 0:

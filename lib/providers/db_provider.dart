@@ -81,4 +81,58 @@ class DBProvider {
 
     return res.isNotEmpty ? ScanModel.fromMap(res.first) : null;
   }
+
+  // Signo de interrogacion en esta ubicacion hace nullable la lista
+  Future<List<ScanModel>?> getAllScans() async {
+    final db = await database;
+
+    // buscar en la tabla Scans un registro por id
+    final res = await db.query('Scans');
+
+    return res.isNotEmpty
+        ? res.map((scan) => ScanModel.fromMap(scan)).toList()
+        : [];
+  }
+
+  Future<List<ScanModel>?> getScansPorTipo(String tipo) async {
+    final db = await database;
+
+    // buscar en la tabla Scans un registro por id
+    final res = await db.rawQuery('''
+    SELECT * FROM Scans WHERE tipo = $tipo
+
+    ''');
+
+    return res.isNotEmpty
+        ? res.map((scan) => ScanModel.fromMap(scan)).toList()
+        : [];
+  }
+
+  // no testeado
+  Future<int> updateScan(ScanModel nuevoScan, int id) async {
+    final db = await database;
+    final res = await db
+        .update('Scans', nuevoScan.toMap(), where: 'id = ?', whereArgs: [id]);
+
+    return res;
+  }
+
+  // no testeado
+  //? borrar un registro de la tabla por id
+  Future<int> deleteScan(int id) async {
+    final db = await database;
+    final res = await db.delete('Scans', where: "id=?", whereArgs: [id]);
+
+    return res;
+  }
+
+  //? borrar todos los registros de la tabla Scans
+  Future<int> deleteAllScans() async {
+    final db = await database;
+    final res = await db.rawDelete('''
+      DELETE FROM Scans
+    ''');
+
+    return res;
+  }
 }
