@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qr_reader/providers/scan_list_provider.dart';
 
 //? no funciona el paquete - curso una vez mas completamente desactualizado
 // import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -28,7 +30,11 @@ class ScanButton extends StatelessWidget {
         // log(result.rawContent);
 
         //? simulando una url
-        final result = "https://fernando-herrera.com";
+        const barcodeScanResult = "https://fernando-herrera.com";
+        final scanListProvider =
+            Provider.of<ScanListProvider>(context, listen: false);
+
+        scanListProvider.nuevoScan(barcodeScanResult);
       },
       child: const Icon(Icons.filter_center_focus),
     );

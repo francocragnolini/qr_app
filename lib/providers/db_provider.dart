@@ -24,6 +24,7 @@ class DBProvider {
   Future<Database> initDB() async {
     // path de donde almacenamos la base de datos
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    // nombre del archivo de DB  ScansDB.db
     final path = p.join(documentsDirectory.path, 'ScansDB.db');
     log(path);
 
@@ -88,20 +89,23 @@ class DBProvider {
 
     // buscar en la tabla Scans un registro por id
     final res = await db.query('Scans');
+    print("DB_PROVIDER getAllScans : $res");
 
     return res.isNotEmpty
         ? res.map((scan) => ScanModel.fromMap(scan)).toList()
         : [];
   }
 
+  //?
   Future<List<ScanModel>?> getScansPorTipo(String tipo) async {
     final db = await database;
 
     // buscar en la tabla Scans un registro por id
     final res = await db.rawQuery('''
-    SELECT * FROM Scans WHERE tipo = $tipo
+    SELECT * FROM Scans WHERE tipo = '$tipo'
 
     ''');
+    print("DB_PROVIDER getScansPorTipo : $res");
 
     return res.isNotEmpty
         ? res.map((scan) => ScanModel.fromMap(scan)).toList()
