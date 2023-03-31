@@ -35,6 +35,8 @@ class ScanButton extends StatelessWidget {
             Provider.of<ScanListProvider>(context, listen: false);
 
         scanListProvider.nuevoScan(barcodeScanResult);
+        const barcodeScanGeo = "geo:15.654345,-45.678456";
+        scanListProvider.nuevoScan(barcodeScanGeo);
       },
       child: const Icon(Icons.filter_center_focus),
     );

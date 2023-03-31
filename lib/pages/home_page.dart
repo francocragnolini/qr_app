@@ -1,16 +1,3 @@
-// import 'dart:developer';
-
-// import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
-// import 'package:qr_reader/pages/direcciones_page.dart';
-// import 'package:qr_reader/pages/mapas_page.dart';
-// import 'package:qr_reader/providers/db_provider.dart';
-// import 'package:qr_reader/providers/scan_list_provider.dart';
-// import 'package:qr_reader/providers/ui_provider.dart';
-
-// import 'package:qr_reader/widgets/custom_navigatorbar.dart';
-// import 'package:qr_reader/widgets/scan_button.dart';
-
 // class HomePage extends StatelessWidget {
 //   const HomePage({super.key});
 
@@ -49,7 +36,7 @@
 //     final int currentIndex = uiProvider.selectedMenuOpt;
 
 //     //! Para Testear el servicio a la base de datos
-//     // TODO: Temporal leer la base de datos
+// TODO: Temporal leer la base de datos
 // final temporalScan = ScanModel(valor: "geo:47.345678,14.234567");
 
 //     //? int porque el future retorna un int
@@ -57,11 +44,11 @@
 
 //     //? buscar scan por id y retornar el valor
 //     //? http://google.com
-//     // DBProvider.db.getScanById(16).then((scan) => log('${scan?.valor}'));
+// DBProvider.db.getScanById(16).then((scan) => log('${scan?.valor}'));
 
 //     //? get all scans
 //     //? lista de http://google.com
-//     // DBProvider.db.getAllScans().then((scan) => log('$scan'));
+// DBProvider.db.getAllScans().then((scan) => log('$scan'));
 //     //!
 
 //     final scanListProvider =
@@ -106,14 +93,17 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Provider.of<ScanListProvider>(context, listen: false)
+                  .borrarScans();
+            },
             icon: const Icon(Icons.delete_forever),
           )
         ],
       ),
       body: _HomePageBody(),
-      bottomNavigationBar: CustomNavigationBar(),
-      floatingActionButton: ScanButton(),
+      bottomNavigationBar: const CustomNavigationBar(),
+      floatingActionButton: const ScanButton(),
 
       //? para determinar la ubicacion del floatingActionButton
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -137,10 +127,10 @@ class _HomePageBody extends StatelessWidget {
     switch (currentIndex) {
       case 0:
         scanListProvider.cargarScansPorTipo("geo");
-        return const DireccionesPage();
+        return const MapasPage();
       case 1:
         scanListProvider.cargarScansPorTipo("http");
-        return const MapasPage();
+        return const DireccionesPage();
 
       default:
         return const MapasPage();

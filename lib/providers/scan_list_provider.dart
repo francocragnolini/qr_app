@@ -53,7 +53,7 @@ class ScanListProvider extends ChangeNotifier {
   borrarScanPorId(int id) async {
     await DBProvider.db.deleteScan(id);
     //? 2
-    await cargarScansPorTipo(tipoSeleccionado);
+    // await cargarScansPorTipo(tipoSeleccionado);
   }
 }
 
@@ -64,3 +64,5 @@ class ScanListProvider extends ChangeNotifier {
 
 //? 2) elimina el registro por ID y ejecuta la funcion cargarScansPorTipo() para obtener el listado actualizado
 //? no utiliza el notifyListeners en borrarScanPorId porque va a notificar dos veces ya que cargarScansPorTipo() tiene un notifyListeners()
+
+//? 2) como utiliza el dismisable para borrar el widget del UI no es necesaria esta linea : await cargarScansPorTipo(tipoSeleccionado);
