@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         initialRoute: "home_page",
         routes: {
           "home_page": (context) => const HomePage(),
-          "mapa_page": (context) => const MapaPage(),
+          "mapa_page": (context) => MapaPage(),
         },
       ),
     );

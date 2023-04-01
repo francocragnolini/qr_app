@@ -89,7 +89,7 @@ class DBProvider {
 
     // buscar en la tabla Scans un registro por id
     final res = await db.query('Scans');
-    print("DB_PROVIDER getAllScans : $res");
+    log("DB_PROVIDER getAllScans : $res");
 
     return res.isNotEmpty
         ? res.map((scan) => ScanModel.fromMap(scan)).toList()
@@ -105,7 +105,7 @@ class DBProvider {
     SELECT * FROM Scans WHERE tipo = '$tipo'
 
     ''');
-    print("DB_PROVIDER getScansPorTipo : $res");
+    log("DB_PROVIDER getScansPorTipo : $res");
 
     return res.isNotEmpty
         ? res.map((scan) => ScanModel.fromMap(scan)).toList()

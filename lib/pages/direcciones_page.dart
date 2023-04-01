@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/scan_list_provider.dart';
+import '../utils/utils.dart';
 
 class DireccionesPage extends StatelessWidget {
   const DireccionesPage({super.key});
@@ -41,6 +42,7 @@ class DireccionesPage extends StatelessWidget {
           onTap: () {
             log("abrir algo");
             log("${scans[index].id}");
+            launchURL(context, scans[index]);
           },
         ),
       ),

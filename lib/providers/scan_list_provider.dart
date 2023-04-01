@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qr_reader/models/scan_model.dart';
+// import 'package:qr_reader/models/scan_model.dart';
 import 'package:qr_reader/providers/db_provider.dart';
 
 // Servicio Centralizado donde vamos a buscar la informacion
@@ -12,7 +12,7 @@ class ScanListProvider extends ChangeNotifier {
   String tipoSeleccionado = "http";
 
   //? 1)
-  nuevoScan(String valor) async {
+  Future<ScanModel> nuevoScan(String valor) async {
     // crea la instancia del modelo
     final nuevoScan = ScanModel(valor: valor);
 
@@ -29,6 +29,8 @@ class ScanListProvider extends ChangeNotifier {
 
       notifyListeners();
     }
+    // modificacion  antes no retornaba nada
+    return nuevoScan;
   }
 
   cargarScans() async {

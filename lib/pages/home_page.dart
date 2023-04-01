@@ -36,7 +36,7 @@
 //     final int currentIndex = uiProvider.selectedMenuOpt;
 
 //     //! Para Testear el servicio a la base de datos
-// TODO: Temporal leer la base de datos
+// Temporal para  leer(probar la base de datos) la base de datos
 // final temporalScan = ScanModel(valor: "geo:47.345678,14.234567");
 
 //     //? int porque el future retorna un int
@@ -67,8 +67,6 @@
 //     }
 //   }
 // }
-
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

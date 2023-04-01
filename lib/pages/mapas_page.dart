@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/scan_list_provider.dart';
+import '../utils/utils.dart';
 
 class MapasPage extends StatelessWidget {
   const MapasPage({super.key});
@@ -33,7 +32,7 @@ class MapasPage extends StatelessWidget {
             color: Colors.grey,
           ),
           onTap: () {
-            log("abrir algo");
+            launchURL(context, scans[index]);
           },
         ),
       ),
