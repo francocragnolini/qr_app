@@ -36,7 +36,9 @@ class ScanButton extends StatelessWidget {
         //? simulando una url
         // const barcodeScanResult = "https://fernando-herrera.com";
         // scanListProvider.nuevoScan(barcodeScanResult);
-        const barcodeScanGeo = "geo:15.654345,-45.678456";
+
+        const barcodeScanGeo = "geo:-31.381002908996383,-64.20786575205449";
+
         // scanListProvider.nuevoScan(barcodeScanGeo);
         final nuevoScan = await scanListProvider.nuevoScan(barcodeScanGeo);
         //?1)
