@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:barcode_scan2/model/scan_options.dart';
+import 'package:barcode_scan2/platform_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader/providers/scan_list_provider.dart';
@@ -21,14 +23,14 @@ class ScanButton extends StatelessWidget {
         log("scanning");
         //? no funciona el scanner intentar con otro dispositivo
         //? posibilidad la camara esta borrosa
-        // final result = await BarcodeScanner.scan(
-        //     options: const ScanOptions(strings: {
-        //   'cancel': 'Cancelar',
-        //   'flash_on': 'Flash_on',
-        //   'flash_off': 'Flash_off',
-        // }));
+        final result = await BarcodeScanner.scan(
+            options: const ScanOptions(strings: {
+          'cancel': 'Cancelar',
+          'flash_on': 'Flash_on',
+          'flash_off': 'Flash_off',
+        }));
 
-        // log(result.rawContent);
+        log(result.rawContent);
 
         final scanListProvider =
             Provider.of<ScanListProvider>(context, listen: false);
@@ -37,10 +39,11 @@ class ScanButton extends StatelessWidget {
         // const barcodeScanResult = "https://fernando-herrera.com";
         // scanListProvider.nuevoScan(barcodeScanResult);
 
-        const barcodeScanGeo = "geo:-31.381002908996383,-64.20786575205449";
+        // const barcodeScanGeo = "geo:-31.381002908996383,-64.20786575205449";
 
-        // scanListProvider.nuevoScan(barcodeScanGeo);
-        final nuevoScan = await scanListProvider.nuevoScan(barcodeScanGeo);
+        scanListProvider.nuevoScan(result.rawContent);
+
+        final nuevoScan = await scanListProvider.nuevoScan(result.rawContent);
         //?1)
         launchURL(context, nuevoScan);
       },
